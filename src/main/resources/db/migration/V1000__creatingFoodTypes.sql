@@ -1,13 +1,13 @@
 create table food_types
 (
-    id   bigint       not null
+    id   bigint  auto_increment  not null
         primary key,
     name varchar(255) null
 );
 
 create table foods
 (
-    id           bigint       not null
+    id           bigint  auto_increment     not null
         primary key,
     description  varchar(255) null,
     gram         double       null,
