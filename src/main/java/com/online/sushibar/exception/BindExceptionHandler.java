@@ -1,15 +1,18 @@
 package com.online.sushibar.exception;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 import static java.util.stream.Collectors.toList;
 
 
-@ControllerAdvice(annotations = RestController.class)
+@ControllerAdvice(annotations = Controller.class)
 public class BindExceptionHandler {
 
     @ExceptionHandler(BindException.class)
@@ -24,5 +27,10 @@ public class BindExceptionHandler {
 
         return ResponseEntity.unprocessableEntity()
                 .body(apiFieldErrors);
+    }
+
+    @ExceptionHandler(IOException.class)
+    protected String handleFileNotFoundEx() {
+        return "file not found";
     }
 }

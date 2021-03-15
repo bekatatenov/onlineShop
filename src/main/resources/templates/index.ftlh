@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="">
+
     <link rel="stylesheet" href="../static/fonts/14362.ttf">
     <script src="https://kit.fontawesome.com/074becbd45.js" crossorigin="anonymous"></script>
     <title>Sushi</title>
@@ -37,7 +38,7 @@
                         <a href="tel:+996502082222">0 502</a>
                     </div>
                     <div class="number"><a href="tel:+996502082222">
-                        08-22-22</a></div>
+                            08-22-22</a></div>
                 </div>
             </div>
         </div>
@@ -58,7 +59,7 @@
                         <a href="tel:+996502081111">0 502</a>
                     </div>
                     <div class="number"><a href="tel:+996554081111">
-                        08-11-11</a></div>
+                            08-11-11</a></div>
                 </div>
             </div>
         </div>
@@ -80,7 +81,7 @@
                         <a href="tel:+996704083333">0 704</a>
                     </div>
                     <div class="number"><a href="tel:+996554083333">
-                        08-33-33</a></div>
+                            08-33-33</a></div>
                 </div>
             </div>
         </div>
