@@ -39,20 +39,23 @@ public class FoodController {
         Page<Food> foods;
         switch (param) {
             case "name":
-                foods = foodService.getByName(PageRequest.of(page, size), text);
+                text = text.toUpperCase();
+                foods = foodService.getByName(PageRequest.of(page - 1, size), text);
                 break;
             case "type":
-                foods = foodService.getByType(PageRequest.of(page, size), text);
+                foods = foodService.getByType(PageRequest.of(page - 1, size), text);
                 break;
             case "desc":
-                foods = foodService.getByDesc(PageRequest.of(page, size), text);
+                foods = foodService.getByDesc(PageRequest.of(page - 1, size), text);
                 break;
             default:
                 throw new ResourceNotFoundException("Method Error");
         }
         model.addAttribute("pages", foods.getTotalPages());
         model.addAttribute("elems", foods.getTotalElements());
-        model.addAttribute("products", foods.getContent());
+        model.addAttribute("foods", foods.getContent());
+        model.addAttribute("type", param);
+        model.addAttribute("text", text);
         return "product";
     }
 }
