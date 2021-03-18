@@ -33,4 +33,14 @@ public class BindExceptionHandler {
     protected String handleFileNotFoundEx() {
         return "file not found";
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    protected String resourceNotFoundException(ResourceNotFoundException ex) {
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    protected String runtimeEx(RuntimeException ex) {
+        return ex.getMessage();
+    }
 }

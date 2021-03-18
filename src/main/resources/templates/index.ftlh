@@ -9,7 +9,7 @@
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="stylesheet" href="../static/fonts/14362.ttf">
+    <link rel="stylesheet" href="/fonts/14362.ttf">
     <script src="https://kit.fontawesome.com/074becbd45.js" crossorigin="anonymous"></script>
     <title>Sushi</title>
 </head>
@@ -19,7 +19,7 @@
 
         <div class="card" style="width: 18rem; text-align: center; background: inherit; border: none">
             <div class="card-body">
-                <div class="logo"><img src="../static/images/logo.svg" alt="logo"></div>
+                <div class="logo"><img src="/images/logo.svg" alt="logo"></div>
             </div>
         </div>
         <!--        Bishkek-->
@@ -98,7 +98,7 @@
 </div>
 <main>
     <div class="container">
-        <button class="btn btn-primary"><a style="color: black" href="localhost:9999/search">Search</a></button>
+        <button class="btn btn-primary"><a style="color: black"  href="/search">Search</a></button>
     </div>
 </main>
 
