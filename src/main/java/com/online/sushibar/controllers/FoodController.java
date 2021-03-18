@@ -42,10 +42,10 @@ public class FoodController {
                 foods = foodService.getByName(PageRequest.of(page, size), text);
                 break;
             case "type":
-                foods = foodService.getbyType(PageRequest.of(page, size), text);
+                foods = foodService.getByType(PageRequest.of(page, size), text);
                 break;
             case "desc":
-                foods = foodService.getbyDesc(PageRequest.of(page, size), text);
+                foods = foodService.getByDesc(PageRequest.of(page, size), text);
                 break;
             default:
                 throw new ResourceNotFoundException("Method Error");

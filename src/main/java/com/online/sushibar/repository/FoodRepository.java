@@ -8,12 +8,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 public interface FoodRepository extends JpaRepository<Food, Long> {
 
     Page<Food> findAllByNameContaining(@NotBlank String name, Pageable pageable);
 
-    Page<Food> findAllByType(FoodType type, Pageable pageable);
+//    Page<Food> findAllByType(FoodType type, Pageable pageable);
+
+    List<Food> findAllByType(FoodType type);
 
     Page<Food> findAllByDescriptionContaining(@NotBlank String description, Pageable pageable);
 }
