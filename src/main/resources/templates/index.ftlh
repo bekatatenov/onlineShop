@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/css/style.css">
 
     <link rel="stylesheet" href="../static/fonts/14362.ttf">
     <script src="https://kit.fontawesome.com/074becbd45.js" crossorigin="anonymous"></script>
@@ -97,7 +97,9 @@
     </nav>
 </div>
 <main>
-
+    <div class="container">
+        <button class="btn btn-primary"><a style="color: black" href="localhost:9999/search">Search</a></button>
+    </div>
 </main>
 
 <footer>
