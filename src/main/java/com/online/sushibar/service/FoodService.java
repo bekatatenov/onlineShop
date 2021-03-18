@@ -44,4 +44,8 @@ public class FoodService {
     public Page<Food> getByDesc(Pageable pageable, String text) {
         return foodRepository.findAllByDescriptionContaining(text, pageable);
     }
+
+    public Page<Food> getAllFood(Pageable pageable) {
+        return foodRepository.findAll(pageable);
+    }
 }

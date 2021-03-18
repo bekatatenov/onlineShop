@@ -5,6 +5,7 @@ import com.online.sushibar.exception.ResourceNotFoundException;
 import com.online.sushibar.service.FoodService;
 import lombok.RequiredArgsConstructor;
 import net.bytebuddy.implementation.bytecode.Throw;
+import org.dom4j.rule.Mode;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +23,11 @@ public class FoodController {
     private final Integer size = 2;
 
     @GetMapping("/")
-    public String index() {
+    public String index(@RequestParam(defaultValue = "1") Integer page, Model model) {
+
+        Page<Food> allFood = foodService.getAllFood(PageRequest.of(page - 1, 6));
+        model.addAttribute("foods", allFood.getContent());
+        model.addAttribute("pages",allFood.getTotalPages());
         return "index";
     }
 

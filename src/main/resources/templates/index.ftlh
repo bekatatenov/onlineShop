@@ -98,8 +98,31 @@
 </div>
 <main>
     <div class="container">
-        <button class="btn btn-primary"><a style="color: black"  href="/search">Search</a></button>
+        <button class="btn btn-primary"><a style="color: black" href="/search">Search</a></button>
     </div>
+
+
+    <#list foods as food>
+        <div class="card" style="width: 18rem;">
+            <img src=${food.image} class="card-img-top" alt="${food.name}">
+            <div class="card-body">
+                <h5 class="card-title">${food.name}</h5>
+                <p class="card-text">${food.description}</p>
+                <p class="card-text">${food.gram} gram</p>
+                <p class="card-text">${food.price} som</p>
+                <p class="card-text">${food.quantity} qty</p>
+                <p class="card-text">${food.type.name} type</p>
+            </div>
+        </div>
+    </#list>
+
+
+    <div>
+        <#list 1..pages as x>
+            <a class="pageButton" href="?page=${x}">${x}</a>
+        </#list>
+    </div>
+
 </main>
 
 <footer>

@@ -18,7 +18,6 @@
     </div>
     <div class="col-auto">
         <select class="form-select" name="param" aria-label="Default select example">
-            <option selected>Search By</option>
             <option value="name">Name</option>
             <option value="type">Type</option>
             <option value="desc">Description</option>
