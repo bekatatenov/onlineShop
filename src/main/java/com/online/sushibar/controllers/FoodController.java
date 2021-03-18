@@ -56,6 +56,11 @@ public class FoodController {
             default:
                 throw new ResourceNotFoundException("Method Error");
         }
+
+        if(foods.getContent().size()<1)
+        {
+            throw new RuntimeException("Not Found");
+        }
         model.addAttribute("pages", foods.getTotalPages());
         model.addAttribute("elems", foods.getTotalElements());
         model.addAttribute("foods", foods.getContent());
