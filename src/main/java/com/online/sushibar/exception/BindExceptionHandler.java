@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -29,16 +30,19 @@ public class BindExceptionHandler {
                 .body(apiFieldErrors);
     }
 
+    @ResponseBody
     @ExceptionHandler(IOException.class)
     protected String handleFileNotFoundEx() {
         return "file not found";
     }
 
+    @ResponseBody
     @ExceptionHandler(ResourceNotFoundException.class)
     protected String resourceNotFoundException(ResourceNotFoundException ex) {
         return ex.getMessage();
     }
 
+    @ResponseBody
     @ExceptionHandler(RuntimeException.class)
     protected String runtimeEx(RuntimeException ex) {
         return ex.getMessage();
