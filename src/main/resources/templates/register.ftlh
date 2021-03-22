@@ -1,38 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-</head>
-<body>
-<div class="container">
-    <div class="register-block">
-        <div class="reg-header">
-            <div>Регистрация</div>
+<h2>Please register</h2>
+<div>
+    <form action="/user/register" method="post">
+
+        <#if _csrf??>
+            <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+        </#if>
+
+        <div>
+            <label class="flex flex-v-center">
+                <p class="label-input-text">Имя:</p>
+                <input type="text" name="name" placeholder="ваше имя" value="${(form.name)!''}">
+            </label>
         </div>
-        <div class="reg-body">
-            <form action="/user/register" method="post">
-                <div class="reg-elements">
-                    <label for="field-1" class="field-label">Имя</label>
-                    <input type="text" id="field-1" class="field-input" name="name">
-                </div>
-                <div class="reg-elements">
-                    <label for="field-2" class="field-label">Емайл</label>
-                    <input type="email" id="field-2" class="field-input" name="email">
-                </div>
-                <div class="reg-elements">
-                    <label for="field-4" class="field-label">Пароль</label>
-                    <input type="password" id="field-4" class="field-input" name="password">
-                    <label for="field-4-1" class="passwordCheckbox">Показать Пароль<input type="checkbox"
-                                                                                          id="field-4-1"></label>
-                </div>
-                <div class="reg-elements">
-                    <button type="submit" class="button">Создать</button>
-                </div>
-            </form>
+        <div>
+            <label class="flex flex-v-center">
+                <p class="label-input-text">Адрес почты:</p>
+                <input type="text" name="email" placeholder="ваш адрес почты" value="${(form.email)!''}">
+            </label>
         </div>
-    </div>
+        <div>
+            <label class="flex flex-v-center">
+                <p class="label-input-text">Пароль:</p>
+                <input type="text" name="password" placeholder="пароль" value="">
+            </label>
+        </div>
+        <div>
+            <button type="submit">Регистрация</button>
+        </div>
+        <div>
+            <#if errors?? >
+                <p>Входные данные с ошибками!</p>
+                <#list errors as fieldError>
+                    <p>${fieldError.field} - ${fieldError.defaultMessage!'-- no message --'}</p>
+                </#list>
+            </#if>
+        </div>
+    </form>
 </div>
-</body>
-</html>
+<div class="bottom-box">
+    <a href="/">На главную страницу</a>
+</div>

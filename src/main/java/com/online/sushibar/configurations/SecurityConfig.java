@@ -27,17 +27,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error=true");
+                .loginPage("/user/login")
+                .failureUrl("/user/login?error=true");
 
         http.logout()
-                .logoutUrl("/logout")
+                .logoutUrl("/user/logout")
                 .logoutSuccessUrl("/")
                 .clearAuthentication(true)
                 .invalidateHttpSession(true);
 
         http.authorizeRequests()
-                .antMatchers("/profile")
+                .antMatchers("/user/profile")
                 .authenticated();
 
         http.authorizeRequests()
@@ -48,11 +48,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         String fetchUsersQuery = "select email, password, enabled"
-                + " from customers"
+                + " from users"
                 + " where email = ?";
 
         String fetchRolesQuery = "select email, role"
-                + " from customers"
+                + " from users"
                 + " where email = ?";
 
         auth.jdbcAuthentication()

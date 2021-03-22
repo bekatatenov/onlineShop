@@ -22,13 +22,14 @@ create table foods
 
 create table users
 (
-    id        bigint       not null
+    id        bigint not null auto_increment unique
         primary key,
     email     varchar(255) null,
+    enabled   bit          null,
     password  varchar(255) null,
+    role      varchar(128) null,
     user_name varchar(255) null
 );
-
 create table reviews
 (
     id      bigint       not null
