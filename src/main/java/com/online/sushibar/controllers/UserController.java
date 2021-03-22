@@ -32,7 +32,7 @@ public class UserController {
             throw new BindException(bindingResult);
         }
 
-        // There is will be business logic
+        // There will be business logic
 
         return "index";
     }
