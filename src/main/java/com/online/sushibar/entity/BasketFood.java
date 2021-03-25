@@ -17,6 +17,7 @@ import javax.validation.constraints.Positive;
 public class BasketFood {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Positive
@@ -30,4 +31,10 @@ public class BasketFood {
     @ManyToOne
     @JoinColumn(name = "food_id")
     private Food food;
+
+    public BasketFood(@Positive Integer qty, Basket basket, Food food) {
+        this.qty = qty;
+        this.basket = basket;
+        this.food = food;
+    }
 }

@@ -3,6 +3,7 @@ package com.online.sushibar.controllers;
 import com.online.sushibar.entity.Food;
 import com.online.sushibar.exception.ResourceNotFoundException;
 import com.online.sushibar.service.FoodService;
+import com.online.sushibar.service.UserService;
 import lombok.RequiredArgsConstructor;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.dom4j.rule.Mode;
@@ -15,19 +16,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping
 public class FoodController {
     private final FoodService foodService;
+    private final UserService userService;
     private final Integer size = 2;
 
     @GetMapping("/")
-    public String index(@RequestParam(defaultValue = "1") Integer page, Model model) {
+    public String index(@RequestParam(defaultValue = "1") Integer page, Model model, Principal principal, HttpServletRequest uriBuilder) {
 
         Page<Food> allFood = foodService.getAllFood(PageRequest.of(page - 1, 6));
         model.addAttribute("foods", allFood.getContent());
-        model.addAttribute("pages",allFood.getTotalPages());
+        model.addAttribute("pages", allFood.getTotalPages());
+        var uri = uriBuilder.getRequestURI();
+        try {
+            var user = userService.getByEmail(principal.getName());
+            model.addAttribute("user", user);
+        } catch (NullPointerException ex) {
+            model.addAttribute("noauth", true);
+        }
         return "index";
     }
 
@@ -57,8 +69,7 @@ public class FoodController {
                 throw new ResourceNotFoundException("Method Error");
         }
 
-        if(foods.getContent().size()<1)
-        {
+        if (foods.getContent().size() < 1) {
             throw new RuntimeException("Not Found");
         }
         model.addAttribute("pages", foods.getTotalPages());

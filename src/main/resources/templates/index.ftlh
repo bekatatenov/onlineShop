@@ -101,6 +101,18 @@
         <button class="btn btn-primary"><a style="color: black" href="/search">Search</a></button>
     </div>
 
+    <#if user??>
+        <div class="container">
+            <button class="btn btn-primary"><a style="color: black" href="/basket">Basket</a></button>
+        </div>
+    </#if>
+
+    <#if noauth??>
+        <div class="container">
+            <button class="btn btn-primary"><a style="color: black" href="/user/login">LogIn</a></button>
+        </div>
+    </#if>
+
 
     <#list foods as food>
         <div class="card" style="width: 18rem;">
@@ -113,9 +125,23 @@
                 <p class="card-text">${food.quantity} qty</p>
                 <p class="card-text">${food.type.name} type</p>
             </div>
+            <div>
+                <#if user??>
+                    <form action="/basket/add" method="post">
+
+                        <#if _csrf??>
+                            <input type="hidden" name="${(_csrf.parameterName)!'csrf'}"
+                                   value="${(_csrf.token)!'--no-token--'}"/>
+                        </#if>
+                        <div>
+                            <input type="hidden" name="foodId" value="${food.id}">
+                            <button type="submit">add To Basket</button>
+                        </div>
+                    </form>
+                </#if>
+            </div>
         </div>
     </#list>
-
 
     <div>
         <#list 1..pages as x>

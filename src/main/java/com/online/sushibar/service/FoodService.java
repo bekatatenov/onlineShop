@@ -48,4 +48,12 @@ public class FoodService {
     public Page<Food> getAllFood(Pageable pageable) {
         return foodRepository.findAll(pageable);
     }
+
+    public boolean existById(Long id) {
+        return foodRepository.existsById(id);
+    }
+
+    public Food getById(Long id) {
+        return foodRepository.findById(id).get();
+    }
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Data
@@ -16,6 +17,7 @@ import java.util.List;
 @Table(name = "baskets")
 public class Basket {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String session;
@@ -30,5 +32,11 @@ public class Basket {
     public Basket(String session, User user) {
         this.session = session;
         this.user = user;
+    }
+
+    public Basket(String session, User user, List<BasketFood> foods) {
+        this.session = session;
+        this.user = user;
+        this.foods = foods;
     }
 }
