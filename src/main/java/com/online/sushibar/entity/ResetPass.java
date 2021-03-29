@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class ResetPass {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String token;
@@ -23,4 +24,10 @@ public class ResetPass {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "users_id", referencedColumnName = "id")
     private User user;
+
+
+    public ResetPass(String token, User user) {
+        this.token = token;
+        this.user = user;
+    }
 }

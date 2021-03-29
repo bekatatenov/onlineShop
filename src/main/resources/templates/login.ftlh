@@ -28,7 +28,7 @@
     </div>
 </form>
 <div class="bottom-box">
-    <a href="/user/forgotpass">Забыл пароль</a>
+    <a href="/forgotpass">Забыл пароль</a>
 </div>
 <div class="bottom-box">
     <a href="/">На главную страницу</a>

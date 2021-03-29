@@ -10,12 +10,17 @@
 <body>
 <h1>Change Password</h1>
 
-<form action="/user/forgot" method="post">
+<form action="/forgot" method="post">
+    <#if _csrf??>
+        <input type="hidden" name="${(_csrf.parameterName)!'csrf'}"
+               value="${(_csrf.token)!'--no-token--'}"/>
+    </#if>
 
-    <label class="flex flex-v-center">
-        <p class="label-input-text">Адрес почты:</p>
-        <input type="text" name="email" placeholder="ваш адрес почты" value="${(form.email)!''}">
-    </label>
+    <div>
+        <label class="flex flex-v-center">
+            <p class="label-input-text">Адрес почты:</p>
+            <input type="text" name="email" placeholder="ваш адрес почты" value="${(form.email)!''}">
+        </label>
     </div>
     <div>
         <button type="submit">Send Email</button>
