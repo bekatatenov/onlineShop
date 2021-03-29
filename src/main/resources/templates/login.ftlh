@@ -14,7 +14,7 @@
     <div>
         <label class="flex flex-v-center ">
             <span class="label-input-text">Адрес почты:</span>
-            <input type="text" name="username" placeholder="ваш адрес почты"  value="${(form.email)!''}" autofocus >
+            <input type="text" name="username" placeholder="ваш адрес почты" value="${(form.email)!''}" autofocus>
         </label>
     </div>
     <div>
@@ -27,6 +27,9 @@
         <button type="submit">Войти!</button>
     </div>
 </form>
+<div class="bottom-box">
+    <a href="/user/forgotpass">Забыл пароль</a>
+</div>
 <div class="bottom-box">
     <a href="/">На главную страницу</a>
 </div>
