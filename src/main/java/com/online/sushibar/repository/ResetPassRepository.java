@@ -12,4 +12,5 @@ public interface ResetPassRepository extends JpaRepository<ResetPass, Long> {
 
     boolean existsByTokenAndUser(String token, User user);
 
+    void deleteAllByUser(User user);
 }

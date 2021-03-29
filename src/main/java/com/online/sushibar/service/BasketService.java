@@ -24,4 +24,12 @@ public class BasketService {
     public void delete(Basket basket) {
         basketRepository.delete(basket);
     }
+
+    public boolean existById(Long id) {
+        return basketRepository.existsById(id);
+    }
+
+    public Basket getById(Long id) {
+        return basketRepository.findById(id).get();
+    }
 }

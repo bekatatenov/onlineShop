@@ -32,7 +32,7 @@ create table users
 );
 create table reviews
 (
-    id      bigint       not null
+    id      bigint       not null  auto_increment unique
         primary key,
     date    date         null,
     name    varchar(255) null,

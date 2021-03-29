@@ -1,6 +1,7 @@
 package com.online.sushibar.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,9 +16,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "reviews")
 public class ReviewForFood {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -33,4 +36,5 @@ public class ReviewForFood {
     @NotEmpty
     @Size(min = 3)
     private String name;
+
 }

@@ -45,6 +45,40 @@
         </form>
 
     </#list>
+
+
+    <form action="/basket/order" method="post">
+        <#if _csrf??>
+            <input type="hidden" name="${(_csrf.parameterName)!'csrf'}"
+                   value="${(_csrf.token)!'--no-token--'}"/>
+        </#if>
+
+        <div>
+            <label class="flex flex-v-center">
+                <p class="label-input-text">Имя:</p>
+                <input type="text" name="name" placeholder="ваше имя" value="${(form.name)!''}">
+            </label>
+        </div>
+        <div>
+            <label class="flex flex-v-center">
+                <p class="label-input-text">Адрес:</p>
+                <input type="text" name="address" placeholder="ваш адрес почты" value="${(form.address)!''}">
+            </label>
+        </div>
+        <div>
+            <label class="flex flex-v-center">
+                <p class="label-input-text"> Telefon:</p>
+                <input type="text" name="tel" placeholder="ваш адрес почты" value="${(form.tel)!''}">
+            </label>
+        </div>
+        <p>Total : ${form.total} som </p>
+        <div>
+            <input type="hidden" name="total" value="${form.total}">
+            <button type="submit">Make Order</button>
+        </div>
+    </form>
+
+
 </main>
 
 </body>
