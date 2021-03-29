@@ -37,4 +37,8 @@ public class UserService {
                 .orElseThrow(UserNotFoundException::new);
         return user;
     }
+
+    public boolean existByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }
