@@ -77,7 +77,13 @@ public class BasketController {
     @GetMapping()
     public String showBasket(Principal principal, HttpSession session, Model model) {
         var user = userService.getByEmail(principal.getName());
+
+        if (basketService.findBySession(session.getId()) == null) {
+            throw new ResourceNotFoundException("Basket is Empty");
+        }
         Basket bySession = basketService.findBySession(session.getId());
+
+
         List<BasketFood> foods = bySession.getFoods();
 
         double total = 0;
@@ -131,8 +137,12 @@ public class BasketController {
         if (bindingResult.hasFieldErrors()) {
             throw new BindException(bindingResult);
         }
-
-        Basket basket = basketService.findBySession(session.getId());
+        Basket basket;
+        try {
+            basket = basketService.findBySession(session.getId());
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("There is nit such basket");
+        }
 
         if (basket == null) {
             throw new ResourceNotFoundException("There is not such basket");
