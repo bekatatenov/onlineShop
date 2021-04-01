@@ -29,6 +29,7 @@
                                 </#if>
                                 <div>
                                     <input type="hidden" name="foodId" value="${food.id}">
+                                    <input type="number" name="qty">
                                     <button type="submit">add To Basket</button>
                                 </div>
                             </form>

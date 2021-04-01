@@ -57,7 +57,7 @@ public class BasketController {
         if (basketService.findBySession(session.getId()) == null) {
             List<BasketFood> list = new ArrayList<>();
             Basket basket = new Basket(session.getId(), user);
-            BasketFood basketFood = new BasketFood(1, basket, food);
+            BasketFood basketFood = new BasketFood(form.getQty(), basket, food);
             list.add(basketFood);
             basketService.save(basket);
             basketFoodService.save(basketFood);
@@ -65,7 +65,7 @@ public class BasketController {
 
         } else {
             Basket basket = basketService.findBySession(session.getId());
-            BasketFood basketFood = new BasketFood(1, basket, food);
+            BasketFood basketFood = new BasketFood(form.getQty(), basket, food);
             basketFoodService.save(basketFood);
         }
         session.removeAttribute(Constants.CART_ID);
