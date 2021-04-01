@@ -1,5 +1,6 @@
 package com.online.sushibar.repository;
 
+import com.online.sushibar.entity.BasketFood;
 import com.online.sushibar.entity.Order;
 import com.online.sushibar.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

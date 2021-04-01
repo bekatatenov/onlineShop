@@ -190,6 +190,7 @@ public class BasketController {
                 .build();
 
         reviewRepository.save(r);
-        return "redirect:/review";
+        String m = String.format("redirect:/food/%s", byId.getId());
+        return m;
     }
 }

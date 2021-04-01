@@ -1,158 +1,47 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
+<#import "/spring.ftl" as spring>
 
-    <link rel="stylesheet" href="/fonts/14362.ttf">
-    <script src="https://kit.fontawesome.com/074becbd45.js" crossorigin="anonymous"></script>
-    <title>Sushi</title>
-</head>
-<body class="body">
-<header class="container">
-    <div class="header">
+<#import "partials/main.ftlh" as main/>
 
-        <div class="card" style="width: 18rem; text-align: center; background: inherit; border: none">
-            <div class="card-body">
-                <div class="logo"><img src="/images/logo.svg" alt="logo"></div>
-            </div>
-        </div>
-        <!--        Bishkek-->
-        <div class="card" style="width: 18rem; text-align: center; background: inherit; border: none">
-            <div class="card-body">
-                <div class="tel-head">
-                    <div class="city"><h5 class="card-title cities">Бишкек</h5>
-                    </div>
-                    <div class="icon"><a href="https://wa.me/996502082222"><i class="fab fa-whatsapp icons"></i></a>
-                    </div>
-                </div>
-                <div class="tel">
-                    <div class="code">
-                        <a href="tel:+996554082222">0 554/</a>
-                        <a href="tel:+996774082222">0 774/</a>
-                        <a href="tel:+996502082222">0 502</a>
-                    </div>
-                    <div class="number"><a href="tel:+996502082222">
-                            08-22-22</a></div>
-                </div>
-            </div>
-        </div>
-
-        <!--        Osh-->
-        <div class="card" style="width: 18rem; text-align: center; background: inherit; border: none">
-            <div class="card-body">
-                <div class="tel-head">
-                    <div class="city"><h5 class="card-title cities">Ош</h5>
-                    </div>
-                    <div class="icon"><a href="https://wa.me/996556081111"><i class="fab fa-whatsapp icons"></i></a>
-                    </div>
-                </div>
-                <div class="tel">
-                    <div class="code">
-                        <a href="tel:+996554081111">0 554/</a>
-                        <a href="tel:+996774081111">0 774/</a>
-                        <a href="tel:+996502081111">0 502</a>
-                    </div>
-                    <div class="number"><a href="tel:+996554081111">
-                            08-11-11</a></div>
-                </div>
-            </div>
-        </div>
-
-
-        <!--        D-abad-->
-        <div class="card" style="width: 20rem; text-align: center; background: inherit; border: none">
-            <div class="card-body">
-                <div class="tel-head">
-                    <div class="city"><h5 class="card-title cities">Джалал-Абад </h5>
-                    </div>
-                    <div class="icon"><a href="https://wa.me/996554083333"><i class="fab fa-whatsapp icons"></i></a>
-                    </div>
-                </div>
-                <div class="tel">
-                    <div class="code">
-                        <a href="tel:+996554083333">0 554/</a>
-                        <a href="tel:+996774083333">0 774/</a>
-                        <a href="tel:+996704083333">0 704</a>
-                    </div>
-                    <div class="number"><a href="tel:+996554083333">
-                            08-33-33</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<div class="navigation">
-    <nav class="navbar navbar-expand-lg" style="background: #bfa58c; opacity: 50%">
-        <ul class="navbar-nav me-auto mx-auto">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-        </ul>
-    </nav>
-</div>
-<main>
+<@main.renderWith>
     <div class="container">
-        <button class="btn btn-primary"><a style="color: black" href="/search">Search</a></button>
-    </div>
+        <div class="card-group">
+            <#list foods as food>
+                <div class="card" style="width: 18rem; padding: 10px">
+                    <img src=${food.image} class="card-img-top" alt="${food.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${food.name}</h5>
+                        <p class="card-text">${food.description}</p>
+                        <p class="card-text">${food.gram} gram</p>
+                        <p class="card-text">${food.price} som</p>
+                        <p class="card-text">${food.quantity} qty</p>
+                        <p class="card-text">${food.type.name} type</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary"><a style="color: black" href="/food/${food.id}">Info</a></button>
+                    </div>
+                    <div>
+                        <#if user??>
+                            <form action="/basket/add" method="post">
 
-    <#if user??>
-        <div class="container">
-            <button class="btn btn-primary"><a style="color: black" href="/basket">Basket</a></button>
-        </div>
-    </#if>
-
-    <#if noauth??>
-        <div class="container">
-            <button class="btn btn-primary"><a style="color: black" href="/user/login">LogIn</a></button>
-        </div>
-    </#if>
-
-
-    <#list foods as food>
-        <div class="card" style="width: 18rem;">
-            <img src=${food.image} class="card-img-top" alt="${food.name}">
-            <div class="card-body">
-                <h5 class="card-title">${food.name}</h5>
-                <p class="card-text">${food.description}</p>
-                <p class="card-text">${food.gram} gram</p>
-                <p class="card-text">${food.price} som</p>
-                <p class="card-text">${food.quantity} qty</p>
-                <p class="card-text">${food.type.name} type</p>
-            </div>
-            <div>
-                <#if user??>
-                    <form action="/basket/add" method="post">
-
-                        <#if _csrf??>
-                            <input type="hidden" name="${(_csrf.parameterName)!'csrf'}"
-                                   value="${(_csrf.token)!'--no-token--'}"/>
+                                <#if _csrf??>
+                                    <input type="hidden" name="${(_csrf.parameterName)!'csrf'}"
+                                           value="${(_csrf.token)!'--no-token--'}"/>
+                                </#if>
+                                <div>
+                                    <input type="hidden" name="foodId" value="${food.id}">
+                                    <button type="submit">add To Basket</button>
+                                </div>
+                            </form>
                         </#if>
-                        <div>
-                            <input type="hidden" name="foodId" value="${food.id}">
-                            <button type="submit">add To Basket</button>
-                        </div>
-                    </form>
-                </#if>
-            </div>
+                    </div>
+                </div>
+            </#list>
         </div>
-    </#list>
+    </div>
 
     <div>
         <#list 1..pages as x>
             <a class="pageButton" href="?page=${x}">${x}</a>
         </#list>
     </div>
-
-</main>
-
-<footer>
-
-</footer>
-</body>
-</html>
+</@main.renderWith>

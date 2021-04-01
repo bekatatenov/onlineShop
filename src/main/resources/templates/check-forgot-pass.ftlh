@@ -1,3 +1,5 @@
+<#import "/spring.ftl" as spring>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,44 +7,26 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Sishi bar</title>
 </head>
 <body>
-<div>
-    <p>Test Token</p>
-    <p>${tok.token}</p>
+
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" action="/changePass" method="post">
+            <#if _csrf??>
+                <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+            </#if>
+            <p>${tok.token}</p>
+            <input type="text" name="token" placeholder="Token" value="${(form.token)!''}">
+            <input type="text" name="email" placeholder="ваш адрес почты" value="${(form.email)!''}">
+            <input type="text" name="password" placeholder="пароль" value="">
+            <button>Change</button>
+            <p class="message">Main Page? <a href="/">Main Page</a></p>
+        </form>
+    </div>
 </div>
-
-<div>
-    <form action="/changePass" method="post">
-        <#if _csrf??>
-            <input type="hidden" name="${(_csrf.parameterName)!'csrf'}"
-                   value="${(_csrf.token)!'--no-token--'}"/>
-        </#if>
-
-        <div>
-            <label class="flex flex-v-center">
-                <p class="label-input-text">Token</p>
-                <input type="text" name="token" placeholder="Token" value="${(form.token)!''}">
-            </label>
-        </div>
-        <div>
-            <label class="flex flex-v-center">
-                <p class="label-input-text">Адрес почты:</p>
-                <input type="text" name="email" placeholder="ваш адрес почты" value="${(form.email)!''}">
-            </label>
-        </div>
-        <div>
-            <label class="flex flex-v-center">
-                <p class="label-input-text">New Пароль:</p>
-                <input type="text" name="password" placeholder="пароль" value="">
-            </label>
-        </div>
-        <div>
-            <button type="submit">Change</button>
-        </div>
-    </form>
-</div>
-
+<script src="/js/login.js"></script>
 </body>
 </html>

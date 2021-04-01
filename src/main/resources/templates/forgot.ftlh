@@ -1,3 +1,5 @@
+<#import "/spring.ftl" as spring>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,26 +7,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Sishi bar</title>
 </head>
 <body>
-<h1>Change Password</h1>
 
-<form action="/forgot" method="post">
-    <#if _csrf??>
-        <input type="hidden" name="${(_csrf.parameterName)!'csrf'}"
-               value="${(_csrf.token)!'--no-token--'}"/>
-    </#if>
-
-    <div>
-        <label class="flex flex-v-center">
-            <p class="label-input-text">Адрес почты:</p>
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" action="/forgot" method="post">
+            <#if _csrf??>
+                <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+            </#if>
             <input type="text" name="email" placeholder="ваш адрес почты" value="${(form.email)!''}">
-        </label>
+            <button>Reset</button>
+            <p class="message">Not registered? <a href="/forgotpass">Reset Password</a></p>
+            <p class="message">Main Page? <a href="/">Main Page</a></p>
+        </form>
     </div>
-    <div>
-        <button type="submit">Send Email</button>
-    </div>
-</form>
+</div>
+<script src="/js/login.js"></script>
 </body>
 </html>

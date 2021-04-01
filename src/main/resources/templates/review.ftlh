@@ -40,6 +40,7 @@
         <input type="hidden" name="foodId" value="${food.id}">
         <button type="submit">Write Riview</button>
     </div>
+</form>
     </#list>
 
 </body>

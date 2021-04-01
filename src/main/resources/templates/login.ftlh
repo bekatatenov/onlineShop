@@ -1,35 +1,34 @@
-<h2>Please sign in</h2>
-<form action="/user/login" method="post">
+<#import "/spring.ftl" as spring>
 
-    <div>
-        <#if error!false >
-            <p style="color:red">Неверные имя пользователя или пароль !</p>
-        </#if>
-    </div>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Sishi bar</title>
+</head>
+<body>
 
-    <#if _csrf??>
-        <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
-    </#if>
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" action="/user/login" method="post">
+            <#if _csrf??>
+                <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+            </#if>
 
-    <div>
-        <label class="flex flex-v-center ">
-            <span class="label-input-text">Адрес почты:</span>
-            <input type="text" name="username" placeholder="ваш адрес почты" value="${(form.email)!''}" autofocus>
-        </label>
-    </div>
-    <div>
-        <label class="flex flex-v-center label-input-text">
-            <span class="label-input-text">Пароль:</span>
+            <input type="text" name="username" placeholder="ваш адрес почты" value="${(form.email)!''}"
+                   autofocus>
             <input type="text" name="password" placeholder="пароль" value="">
-        </label>
+            <button>login</button>
+            <p class="message">Forgot Password? <a href="/user/register">Create an account</a></p>
+            <p class="message">Not registered? <a href="/forgotpass">Reset Password</a></p>
+            <p class="message">Main Page? <a href="/">Main Page</a></p>
+        </form>
     </div>
-    <div>
-        <button type="submit">Войти!</button>
-    </div>
-</form>
-<div class="bottom-box">
-    <a href="/forgotpass">Забыл пароль</a>
 </div>
-<div class="bottom-box">
-    <a href="/">На главную страницу</a>
-</div>
+<script src="/js/login.js"></script>
+</body>
+</html>
