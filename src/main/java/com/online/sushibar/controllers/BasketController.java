@@ -54,10 +54,17 @@ public class BasketController {
             throw new ResourceNotFoundException("Not Found");
         }
         var food = foodService.getById(form.getFoodId());
+        int a = 0;
+        if (form.getQty() == null) {
+            a = 1;
+        } else {
+            a = form.getQty();
+        }
+
         if (basketService.findBySession(session.getId()) == null) {
             List<BasketFood> list = new ArrayList<>();
             Basket basket = new Basket(session.getId(), user);
-            BasketFood basketFood = new BasketFood(form.getQty(), basket, food);
+            BasketFood basketFood = new BasketFood(a, basket, food);
             list.add(basketFood);
             basketService.save(basket);
             basketFoodService.save(basketFood);
@@ -65,7 +72,7 @@ public class BasketController {
 
         } else {
             Basket basket = basketService.findBySession(session.getId());
-            BasketFood basketFood = new BasketFood(form.getQty(), basket, food);
+            BasketFood basketFood = new BasketFood(a, basket, food);
             basketFoodService.save(basketFood);
         }
         session.removeAttribute(Constants.CART_ID);
@@ -128,9 +135,8 @@ public class BasketController {
         session.removeAttribute(Constants.CART_ID);
         session.setAttribute(Constants.CART_ID, basketService.findBySession(session.getId()));
 
-        return "redirect:/basket";
+        return "redirect:/";
     }
-
     @PostMapping("/order")
     public String makeOrder(@Valid OrderForm orderForm, BindingResult bindingResult, HttpSession session) throws BindException {
 

@@ -17,7 +17,8 @@
                         <p class="card-text">${food.type.name} type</p>
                     </div>
                     <div>
-                        <button class="btn btn-primary"><a style="color: black" href="/food/${food.id}">Info</a></button>
+                        <button class="btn btn-primary"><a style="color: black" href="/food/${food.id}">Info</a>
+                        </button>
                     </div>
                     <div>
                         <#if user??>
@@ -29,7 +30,7 @@
                                 </#if>
                                 <div>
                                     <input type="hidden" name="foodId" value="${food.id}">
-                                    <input type="number" name="qty">
+                                    <input type="number" name="qty" placeholder="QTY">
                                     <button type="submit">add To Basket</button>
                                 </div>
                             </form>
