@@ -9,10 +9,10 @@
             <div class="card-body">
                 <h5 class="card-title">${food.name}</h5>
                 <p class="card-text">${food.description}</p>
-                <p class="card-text">${food.gram} gram</p>
-                <p class="card-text">${food.price} som</p>
-                <p class="card-text">${food.quantity} qty</p>
-                <p class="card-text">${food.type.name} type</p>
+                <p class="card-text">${food.gram} <@spring.message "Gram"/></p>
+                <p class="card-text">${food.price} <@spring.message "Som"/></p>
+                <p class="card-text">${food.quantity} <@spring.message "Qty"/></p>
+                <p class="card-text">${food.type.name} <@spring.message "Type"/></p>
             </div>
 
             <div>
@@ -25,7 +25,7 @@
                         </#if>
                         <div>
                             <input type="hidden" name="foodId" value="${food.id}">
-                            <button type="submit">add To Basket</button>
+                            <button type="submit"><@spring.message "AddToBasket"/></button>
                         </div>
                     </form>
 
@@ -39,13 +39,12 @@
 
                             <div>
                                 <label class="flex flex-v-center">
-                                    <p class="label-input-text">Имя:</p>
-                                    <input type="text" name="text" placeholder="review">
+                                    <input type="text" name="text" placeholder=<@spring.message "text"/>>
                                 </label>
                             </div>
                             <div>
                                 <input type="hidden" name="foodId" value="${food.id}">
-                                <button type="submit">Write Riview</button>
+                                <button type="submit"><@spring.message "AddReview"/></button>
                             </div>
                         </form>
                     </#if>
@@ -55,7 +54,7 @@
             <div>
                 <#if reviews??>
                     <#list reviews as one>
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 100%">
                             <div class="card-body">
                                 <p class="card-text">${one.user.userName} : ${one.name} date: ${one.date}</p>
                             </div>

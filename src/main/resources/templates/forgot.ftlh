@@ -18,11 +18,28 @@
             <#if _csrf??>
                 <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
             </#if>
-            <input type="text" name="email" placeholder="ваш адрес почты" value="${(form.email)!''}">
-            <button>Reset</button>
-            <p class="message">Not registered? <a href="/forgotpass">Reset Password</a></p>
-            <p class="message">Main Page? <a href="/">Main Page</a></p>
+            <input type="text" name="email" placeholder=<@spring.message"Your-Email"/>  value="${(form.email)!''}">
+            <button><@spring.message"button.language-change.text"/> </button>
+            <p class="message"><@spring.message"registed"/> ? <a href="/forgotpass"><@spring.message"LogIn"/> </a></p>
+            <p class="message"><@spring.message"MainPage"/> ? <a href="/"><@spring.message"MainPage"/> </a></p>
         </form>
+
+        <div style="padding-top: 15px">
+            <form action="" method="get" class="my-3">
+                <label for="lang_select">
+                    <@spring.message "label.language" />:
+                </label>
+                <select name="lang" id="lang_select">
+                    <option value="">Default</option>
+                    <option value="" disabled>----------</option>
+                    <option value="en-US">American English</option>
+                    <option value="ru-RU">Русский</option>
+                </select>
+                <button type="submit">
+                    <@spring.message "button.language-change.text" />
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 <script src="/js/login.js"></script>
